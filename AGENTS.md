@@ -1,19 +1,39 @@
 ---
-framework_version: 1.0.0
+framework_version: 1.1.0-chatgpt
 ---
 
-# Agent Guidelines: AI Job Search
+# Agent Guidelines: Zhi Wang Job Search
 
-This workspace is structured to manage job search activities, scraper tools, CVs, cover letters, and interview preparation.
+This workspace is a personalized job-search system. **ChatGPT / OpenAI Responses API is the primary AI runtime.**
 
-## Thin-Pointer Design (Single Source of Truth)
+## Single source of truth
 
-To prevent duplication and configuration drift across different AI agent frameworks (Claude Code, Google Antigravity, Codex, Cursor, Gemini CLI, etc.), this workspace uses a unified thin-pointer design. All agent runtimes should load the canonical specifications and candidate profiles from the files and directories below:
+Candidate facts:
+- `profile/zhi_wang.md`
+- `cv/zhi_wang_master.md`
 
-1. **Personal Candidate Profile:**
-   - The candidate profile, contact details, education, and target preferences are defined in [CLAUDE.md](CLAUDE.md) and the individual profile methodology files under [.claude/skills/job-application-assistant/](.claude/skills/job-application-assistant/) (specifically `01-*.md` etc.).
-2. **Canonical Workflow Specifications:**
-   - The step-by-step instructions and triggers for tasks (setup, scrape, rank, apply, upskill, interview) are defined in the [.claude/](.claude/) directory (specifically under `.claude/skills/` and `.claude/commands/`).
-   - Do not duplicate these rules or specifications. Treat `.claude/` files as the single source of truth.
-3. **Portal Search Skills:**
-   - Job-portal search CLIs live under [.agents/skills/](.agents/skills/) in the portable Agent Skills format (with a `SKILL.md` per portal). Codex and Antigravity discover these automatically; the `/scrape` workflow in [.claude/skills/job-scraper/](.claude/skills/job-scraper/) orchestrates them.
+Search targets:
+- `config/search_preferences.json`
+
+Primary OpenAI workflow:
+- `CHATGPT.md`
+- `chatgpt_job_agent.py`
+
+Private contact details:
+- optional local `config/private_profile.json` (git-ignored)
+
+## Compatibility with upstream
+
+The original `.claude/commands/` and `.claude/skills/` directories are retained from `MadsLorentzen/ai-job-search` so upstream updates remain mergeable and the workspace can still be used from Claude Code, Codex, Cursor, Gemini CLI, or other agent tools.
+
+When an upstream instruction conflicts with this fork's candidate facts, the canonical files above win. Do not replace Zhi Wang's profile with upstream example data.
+
+## Portal search tools
+
+Portable search CLIs remain under `.agents/skills/`. They can be used directly, but the default entry point for this fork is:
+
+```bash
+python chatgpt_job_agent.py search
+```
+
+For fit evaluation and application preparation, follow the factual-grounding and privacy rules in `CHATGPT.md`.

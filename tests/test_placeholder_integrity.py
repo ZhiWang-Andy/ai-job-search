@@ -10,10 +10,15 @@ email passed the check (review finding F28, 2026-08-19; proven
 empirically). Same weakness for 01-candidate-profile.md's `<!-- SETUP`
 comment sentinel.
 
-These tests pin (a) that ci.yml checks data-located sentinels, (b) that
-the sentinels exist in the pristine files, and (c) that simulating the
-/setup edit destroys at least one checked sentinel per file - i.e. the
-guard actually fires on the failure it exists to catch.
+These tests pin (a) that ci.yml checks data-located sentinels, (b) that the
+sentinels exist in pristine upstream files, and (c) that simulating the
+/setup edit destroys at least one checked sentinel per file - i.e. the guard
+actually fires on the failure it exists to catch.
+
+Downstream personalized forks are allowed to replace the tracked candidate
+profile when they explicitly mark that profile as personalized. In that
+mode the profile must no longer contain the upstream email sentinel and must
+state that private contact data stays outside the tracked profile.
 """
 import unittest
 from pathlib import Path
@@ -84,8 +89,27 @@ class TestProfileSentinelIsDataLocated(unittest.TestCase):
             "a header comment the model may leave untouched",
         )
 
-    def test_pristine_profile_carries_the_sentinel(self):
-        self.assertIn(PROFILE_SENTINEL, PROFILE.read_text(encoding="utf-8"))
+    def test_profile_matches_template_or_explicit_personalized_mode(self):
+        text = PROFILE.read_text(encoding="utf-8")
+        frontmatter = text.split("---", 2)[1] if text.startswith("---") else ""
+
+        if "personalized" in frontmatter.lower():
+            self.assertNotIn(
+                PROFILE_SENTINEL,
+                text,
+                "a personalized profile should not keep the upstream email placeholder",
+            )
+            self.assertIn(
+                "Private contact data",
+                text,
+                "a personalized public profile must document where private contact data lives",
+            )
+        else:
+            self.assertIn(
+                PROFILE_SENTINEL,
+                text,
+                "the pristine upstream profile must keep its data-located sentinel",
+            )
 
 
 if __name__ == "__main__":

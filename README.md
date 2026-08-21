@@ -1,5 +1,9 @@
 # Zhi Wang — ChatGPT Job Search Agent
 
+<p align="center">
+  <img src="assets/mascot/pip_flight_loop.gif" alt="AI job search mascot" width="180">
+</p>
+
 A personalized job-search and application workspace for **Zhi Wang**, Economics Ph.D. candidate at The Ohio State University.
 
 This repository is based on [MadsLorentzen/ai-job-search](https://github.com/MadsLorentzen/ai-job-search) and keeps the upstream portal/search infrastructure, but this fork uses **ChatGPT / the OpenAI Responses API as the primary runtime** and uses Zhi Wang's own research, skills, resume, and job-search preferences as the source of truth.
@@ -37,6 +41,20 @@ The search also actively includes economist/economic research, antitrust and com
 For the current configuration, prioritize **Summer 2027 / PhD internships and adjacent roles compatible with a May 2028 graduation**.
 
 ## Setup
+
+### 1. Fork and clone
+
+This repository is already Zhi Wang's personalized fork. If another user starts from the upstream template, the standard GitHub CLI path is:
+
+```bash
+gh repo fork MadsLorentzen/ai-job-search --clone
+```
+
+**Privacy warning:** a fork of a public repository is public. The upstream `/setup` workflow can write personal data into tracked files, so do not run it with private contact information in a public fork. See **SETUP.md section 8** for the upstream private-remote recipe before personalizing a new copy.
+
+For this personalized fork, clone or update `ZhiWang-Andy/ai-job-search` and keep private fields only in the git-ignored `config/private_profile.json`.
+
+### 2. Python environment
 
 ```powershell
 python -m venv .venv

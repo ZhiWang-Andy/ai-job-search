@@ -1,0 +1,68 @@
+{
+  "candidate": "Zhi Wang",
+  "country": "US",
+  "location_strategy": "US-wide; do not silently restrict to Columbus. Include onsite, hybrid, and remote roles when substantively relevant.",
+  "graduation": "May 2028",
+  "recruiting_cycle": "Summer 2027 / 2027",
+  "primary_roles": [
+    "Quantitative Research Intern (PhD)",
+    "Quantitative Trader Intern (PhD)",
+    "Systematic Investment Research Intern",
+    "Financial Quantitative Research / Risk / Treasury / Credit Intern",
+    "Applied Scientist / Research Scientist - Economics, Causal Inference, Pricing, Marketplace",
+    "Data Scientist - Causal Inference, Experimentation, Economics, Pricing"
+  ],
+  "secondary_roles": [
+    "Economist / Economic Research Intern",
+    "Economic Consulting / Antitrust / Competition Summer Associate",
+    "Decision Scientist / Consumer Scientist / Marketplace Scientist",
+    "Pricing / Revenue Management / Demand Science",
+    "Credit / Lending / Treasury / Risk Analytics",
+    "Strategy / Business Economics",
+    "Policy Research / Program Evaluation / Regulatory Economics",
+    "International Organization / Development Finance / Trade Research"
+  ],
+  "search_terms": [
+    "PhD intern",
+    "graduate intern",
+    "quantitative research",
+    "quantitative trading",
+    "systematic research",
+    "research scientist economics",
+    "applied scientist economics",
+    "causal inference",
+    "experimentation",
+    "decision scientist",
+    "consumer science",
+    "marketplace science",
+    "pricing science",
+    "demand forecasting",
+    "economist intern",
+    "economic consulting summer associate",
+    "antitrust economics",
+    "competition economics",
+    "credit research",
+    "treasury quantitative",
+    "risk quantitative",
+    "program evaluation",
+    "development economics intern",
+    "trade research intern"
+  ],
+  "company_families": [
+    "quant funds and proprietary trading firms",
+    "banks and asset managers",
+    "major technology and platform companies",
+    "economic consulting and antitrust firms",
+    "economic research and policy organizations",
+    "government and central banks",
+    "international institutions"
+  ],
+  "source_priority": [
+    "official employer career page",
+    "official ATS requisition",
+    "LinkedIn public job listing",
+    "reputable aggregator only when necessary"
+  ],
+  "active_role_rule": "Report a role as open only when there is a current active requisition or application path. A program previously discussed as upcoming becomes newly reportable when it later opens.",
+  "deduplication_rule": "Deduplicate the same requisition across sources, but do not suppress a newly opened requisition merely because the program was previously mentioned while closed or upcoming."
+}

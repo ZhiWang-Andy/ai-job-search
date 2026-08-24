@@ -103,11 +103,30 @@ jobs:
           fail-on-severity: high
 
   latex-smoke:
-    name: Compile example CV and cover letter
+    # Test both current TeX Live and Debian bookworm's apt-packaged TeX Live
+    # 2022/moderncv 2.3.x, since the latter is representative of common Linux
+    # installs and catches compatibility regressions the latest image cannot.
+    name: Compile example CV and cover letter (${{ matrix.leg.name }})
     runs-on: ubuntu-latest
-    container: texlive/texlive:latest
+    container: ${{ matrix.leg.container }}
+    strategy:
+      fail-fast: false
+      matrix:
+        leg:
+          - name: texlive-latest
+            container: texlive/texlive:latest
+          - name: debian-bookworm
+            container: debian:bookworm
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Install apt-packaged TeX Live (bookworm leg)
+        if: matrix.leg.name == 'debian-bookworm'
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            texlive-luatex texlive-latex-extra texlive-xetex \
+            texlive-fonts-extra texlive-fonts-recommended \
+            poppler-utils python3
       - name: Install PDF inspection tools
         run: |
           if ! command -v pdfinfo >/dev/null || ! command -v pdftotext >/dev/null; then

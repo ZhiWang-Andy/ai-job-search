@@ -3,8 +3,8 @@
 # It fetches the upstream template, runs tools/upstream_triage.py to sort the
 # commits this fork lacks into "worth reviewing" vs "probably skip" (dropping
 # cherry-picks already applied and changes that only touch files this fork
-# removed), and writes the result into a single rolling issue. You read it and
-# port anything worth porting by hand.
+# removed), and writes the result into a single rolling issue when Issues are
+# enabled. The report is always printed and added to the Actions job summary.
 #
 # The report/act boundary is deliberate and load-bearing: the report stops at
 # ready-to-run cherry-pick lines and never opens a draft PR or merges. On a
@@ -62,8 +62,9 @@ jobs:
             python tools/upstream_triage.py --remote upstream --branch master
           } > report.md
           cat report.md
+          cat report.md >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Open or update the rolling issue
+      - name: Open or update the rolling issue when Issues are enabled
         env:
           # Built-in token is scoped to this repo only, so the digest can never
           # be written outside the fork.
@@ -73,6 +74,12 @@ jobs:
           # would land on upstream's tracker instead of the fork's.
           GH_REPO: ${{ github.repository }}
         run: |
+          has_issues=$(gh api "repos/$GH_REPO" --jq '.has_issues')
+          if [ "$has_issues" != "true" ]; then
+            echo "::warning::Issues are disabled for $GH_REPO. Upstream triage succeeded; the report is available in this run's job summary. Enable Settings -> General -> Features -> Issues to restore the rolling issue."
+            exit 0
+          fi
+
           title="Upstream sync watch"
           existing=$(gh issue list --state open --search "in:title \"$title\"" \
             --json number,title --jq ".[] | select(.title==\"$title\") | .number" | head -n1)

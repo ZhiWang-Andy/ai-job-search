@@ -1,0 +1,8 @@
+{
+  "email": "YOUR_EMAIL",
+  "phone": "YOUR_PHONE",
+  "address": "YOUR_ADDRESS",
+  "work_authorization": "FILL_LOCALLY_IF_YOU_WANT_THE_AGENT_TO_USE_IT",
+  "sponsorship_notes": "OPTIONAL_PRIVATE_NOTES",
+  "availability_notes": "OPTIONAL_PRIVATE_NOTES"
+}

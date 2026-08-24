@@ -103,11 +103,30 @@ jobs:
           fail-on-severity: high
 
   latex-smoke:
-    name: Compile example CV and cover letter
+    # Test both current TeX Live and Debian bookworm's apt-packaged TeX Live
+    # 2022/moderncv 2.3.x, since the latter is representative of common Linux
+    # installs and catches compatibility regressions the latest image cannot.
+    name: Compile example CV and cover letter (${{ matrix.leg.name }})
     runs-on: ubuntu-latest
-    container: texlive/texlive:latest
+    container: ${{ matrix.leg.container }}
+    strategy:
+      fail-fast: false
+      matrix:
+        leg:
+          - name: texlive-latest
+            container: texlive/texlive:latest
+          - name: debian-bookworm
+            container: debian:bookworm
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Install apt-packaged TeX Live (bookworm leg)
+        if: matrix.leg.name == 'debian-bookworm'
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            texlive-luatex texlive-latex-extra texlive-xetex \
+            texlive-fonts-extra texlive-fonts-recommended \
+            poppler-utils python3
       - name: Install PDF inspection tools
         run: |
           if ! command -v pdfinfo >/dev/null || ! command -v pdftotext >/dev/null; then
@@ -216,3 +235,69 @@ jobs:
           check .claude/skills/job-application-assistant/01-candidate-profile.md '\[YOUR_EMAIL\]'
           check .claude/skills/job-application-assistant/04-job-evaluation.md '\[YOUR_PRIMARY_SKILLS\]'
           exit $fail
+
+  required-checks:
+    name: Required checks passed
+    if: always()
+    needs:
+      - lint
+      - security-guards
+      - python-tests
+      - dependency-review
+      - latex-smoke
+      - discover-clis
+      - cli-checks
+      - placeholder-integrity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify required CI results
+        env:
+          REPOSITORY: ${{ github.repository }}
+          LINT_RESULT: ${{ needs.lint.result }}
+          SECURITY_RESULT: ${{ needs.security-guards.result }}
+          PYTHON_RESULT: ${{ needs.python-tests.result }}
+          DEPENDENCY_RESULT: ${{ needs.dependency-review.result }}
+          LATEX_RESULT: ${{ needs.latex-smoke.result }}
+          DISCOVER_RESULT: ${{ needs.discover-clis.result }}
+          CLI_RESULT: ${{ needs.cli-checks.result }}
+          PLACEHOLDER_RESULT: ${{ needs.placeholder-integrity.result }}
+        run: |
+          fail=0
+
+          require_success() {
+            label="$1"
+            result="$2"
+            if [ "$result" != "success" ]; then
+              echo "::error::$label finished with result '$result'"
+              fail=1
+            else
+              echo "$label: success"
+            fi
+          }
+
+          allow_success_or_skipped() {
+            label="$1"
+            result="$2"
+            if [ "$result" != "success" ] && [ "$result" != "skipped" ]; then
+              echo "::error::$label finished with result '$result'"
+              fail=1
+            else
+              echo "$label: $result"
+            fi
+          }
+
+          require_success "Lint" "$LINT_RESULT"
+          require_success "Security guards" "$SECURITY_RESULT"
+          require_success "Python tests" "$PYTHON_RESULT"
+          allow_success_or_skipped "Dependency review" "$DEPENDENCY_RESULT"
+          require_success "LaTeX smoke" "$LATEX_RESULT"
+          require_success "CLI discovery" "$DISCOVER_RESULT"
+          allow_success_or_skipped "CLI checks" "$CLI_RESULT"
+
+          if [ "$REPOSITORY" = "MadsLorentzen/ai-job-search" ]; then
+            require_success "Placeholder integrity" "$PLACEHOLDER_RESULT"
+          else
+            allow_success_or_skipped "Placeholder integrity" "$PLACEHOLDER_RESULT"
+          fi
+
+          exit "$fail"

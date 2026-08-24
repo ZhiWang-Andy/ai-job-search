@@ -14,14 +14,19 @@ answers "which of my personalized framework files changed" (version stamps);
 this one answers "which upstream commits deserve my attention" (commit history).
 Two tools, two questions - each cross-references the other in its output.
 
-Two signals drive the sort:
+Signals used by the sort:
 
 1. Already applied? A cherry-pick lands with a NEW sha but the same patch, so a
    raw sha comparison misreports it as missing. We compute git patch-ids for the
    fork-only commits and treat any upstream commit whose patch-id (or exact
    subject) matches as already applied.
 
-2. Relevant to this fork? A commit that only touches files this fork deleted
+2. Manually handled? Personalized forks often adapt an upstream change instead
+   of cherry-picking it byte-for-byte. SHA prefixes recorded in
+   `.github/upstream-handled.txt` are treated as reviewed/ported so they do not
+   reappear every week.
+
+3. Relevant to this fork? A commit that only touches files this fork deleted
    (e.g. removed demo portals) is almost certainly N/A. We check each commit's
    touched paths against the working tree and flag accordingly.
 
@@ -89,8 +94,8 @@ def remote_slug(remote: str) -> str | None:
     return None
 
 
-def load_wontport(path: str) -> list[str]:
-    """SHA prefixes the fork has decided never to port; missing file -> []."""
+def load_prefix_list(path: str) -> list[str]:
+    """Load SHA prefixes from a comment-friendly file; missing file -> []."""
     try:
         with open(path, encoding="utf-8") as f:
             raw = f.read()
@@ -115,10 +120,12 @@ def main() -> int:
     ap.add_argument("--remote", default="upstream")
     ap.add_argument("--branch", default="master")
     ap.add_argument("--wontport", default=".github/upstream-wontport.txt")
+    ap.add_argument("--handled", default=".github/upstream-handled.txt")
     args = ap.parse_args()
     ref = f"{args.remote}/{args.branch}"
     slug = remote_slug(args.remote)
-    wontport = load_wontport(args.wontport)
+    wontport = load_prefix_list(args.wontport)
+    handled = load_prefix_list(args.handled)
 
     try:
         git("rev-parse", "--verify", ref)
@@ -149,6 +156,9 @@ def main() -> int:
         short = sha[:9]
         if patch_id(sha) in fork_patch_ids or subj in fork_subjects:
             skip.append((short, sha, subj, "already applied (cherry-picked)"))
+            continue
+        if any(sha.startswith(e) for e in handled):
+            skip.append((short, sha, subj, "already reviewed and ported/adapted manually"))
             continue
         if any(sha.startswith(e) for e in wontport):
             skip.append((short, sha, subj, "on the fork's won't-port list"))

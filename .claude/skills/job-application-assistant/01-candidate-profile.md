@@ -1,73 +1,67 @@
 ---
-framework_version: 1.1.1
+framework_version: 1.1.1-personalized
 ---
 
-# Candidate Profile
+# Candidate Profile — Zhi Wang
 
-<!-- SETUP: This file is populated by running /setup -->
-<!-- After running /setup, all sections will be filled with your actual information -->
+For complete factual detail, use `profile/zhi_wang.md` and `cv/zhi_wang_master.md`. Those files override upstream examples and placeholders.
 
 ## Identity
-- **Name:** [YOUR_NAME]
-- **Location:** [YOUR_ADDRESS]
-- **Phone:** [YOUR_PHONE]
-- **Email:** [YOUR_EMAIL]
-- **LinkedIn:** [YOUR_LINKEDIN_URL]
-- **GitHub:** [YOUR_GITHUB_URL]
-- **Status:** [YOUR_EMPLOYMENT_STATUS]
-- **Constraints:** [YOUR_COMMUTE_OR_LOCATION_CONSTRAINTS]
 
-### Languages
-<!-- Every language you can work in professionally, with your honest level. Used by the
-Language Gate in 04-job-evaluation.md and by job-scraper/search-queries.md's query-language
-generation. Omit any language you don't actually work in - an undeclared language is treated as
-a hard no, not a gap to smooth over. -->
-
-| Language | Level | Notes |
-|----------|-------|-------|
-| [LANGUAGE] | [LEVEL, e.g. "Native" / "C2" / "B1/B2 (conversational)"] | [optional] |
+- **Name:** Zhi Wang
+- **Location:** Columbus, Ohio, United States
+- **Status:** Ph.D. candidate in Economics at The Ohio State University
+- **Expected graduation:** May 2028
+- **Fields:** Industrial Organization; Financial Economics
+- **GitHub:** https://github.com/ZhiWang-Andy
+- **LinkedIn:** https://linkedin.com/in/zhi-wang-98b8a6380
+- **Private contact data:** local `config/private_profile.json`; do not commit phone/street address.
 
 ## Education
 
-| Degree | Period | Institution | Key Topics |
-|--------|--------|-------------|------------|
-| [DEGREE] | [YEARS] | [INSTITUTION] | [TOPICS] |
-
-## Professional Experience
-
-### [JOB_TITLE] - [COMPANY] ([START] - [END])
-[LOCATION]
-- [RESPONSIBILITY_OR_ACHIEVEMENT_1]
-- [RESPONSIBILITY_OR_ACHIEVEMENT_2]
-- [RESPONSIBILITY_OR_ACHIEVEMENT_3]
-
-<!-- Add more roles as needed -->
-
-## Independent Projects
-<!-- Projects outside of employment: freelance, open source, personal -->
-- **[PROJECT_NAME]**: [DESCRIPTION]
+- **Ph.D. Candidate in Economics**, The Ohio State University, Aug 2022 – May 2028 expected. Fields: Industrial Organization and Financial Economics.
+- **M.A. in Applied Economics**, University of Southern California, Aug 2019 – May 2021.
+- **B.M. in International Accounting**, Nankai University, Sep 2015 – Jun 2019.
 
 ## Technical Skills
 
-### Programming & ML
-- **[LANGUAGE]** ([PROFICIENCY]): [FRAMEWORKS_AND_LIBRARIES]
-- [OTHER_SKILLS]
+**Programming & Data:** Python (pandas, NumPy, SciPy, statsmodels, scikit-learn, PyTorch); R/RStan; Stata; SQL/DuckDB; MATLAB; Julia; Git/GitHub; Jupyter/Colab; Excel; large-scale data integration and reproducible workflows.
 
-### Domain Expertise
-- [DOMAIN_1]
-- [DOMAIN_2]
+**Quantitative Methods:** Structural econometrics; discrete-choice demand and supply estimation; panel data; fixed effects; difference-in-differences; causal inference; simulation and counterfactual analysis; Bayesian and latent-variable models; machine learning and neural networks; numerical optimization; PCA; network analysis.
 
-### Software & Tools
-- [TOOL_LIST]
+**Economic Applications:** Antitrust and competition; market definition and market power; pricing and pass-through; strategic coordination and joint ventures; transportation and labor markets; corporate lending and banking; syndicated loans; asset pricing and market microstructure.
 
-## Publications
-<!-- List peer-reviewed publications, if any -->
-1. [AUTHOR_LIST] ([YEAR]). [TITLE]. [JOURNAL]. [DOI_LINK]
+## Selected Research
 
-## Awards
-- [AWARD] - [EVENT] ([YEAR])
+### Competition, Capacity Sharing, and Market Power in International Shipping — Current
+- Built a carrier-route-market panel from international shipment data to study pricing, service quality, market shares, and strategic capacity-sharing agreements among major liner-shipping firms.
+- Estimated differentiated-product demand and multi-product supply models to quantify substitution patterns, marginal costs, markups, and market power; combined structural estimation with difference-in-differences evidence on alliance participation.
+- Conducted counterfactual simulations comparing observed coordination with alternative capacity-sharing regimes to separate cost efficiencies from competitive effects and evaluate implications for consumer and producer welfare.
 
-## References
-- [NAME], [TITLE], [COMPANY] ([EMAIL], [PHONE])
+### Corporate Lending, Syndicate Formation, and Bank Competition — Current
+- Built a Python/DuckDB workflow for global syndicated-loan data from WRDS Refinitiv LPC Dealscan and linked loan records with Compustat North America, CRSP, Federal Reserve FR Y-9C reports, and FFIEC Call Reports.
+- Developed a structural model of lead-bank retention, participant-bank demand, syndicate formation, loan allocation, and pricing under information frictions and relationship-based lending.
+- Used latent-state and neural-network demand models for participant-selection and credit-allocation counterfactuals.
 
-More references available upon request.
+## Research and Teaching Experience
+
+- **Research Assistant, University of Southern California**, Jul 2020 – Aug 2021. Employment Effects of Labor-Market Deregulation with Prof. Jeffrey B. Nugent; World Bank Enterprise Survey and CBR-LRI data; Probit, fixed-effects, PCA; presented at Western Economic Association International.
+- **Research Assistant, Security and Political Economy Lab**, Feb 2020 – Aug 2020. Integrated and standardized 89 international political/economic datasets in R; implemented Bayesian latent-variable models in RStan.
+- **Instructor, The Ohio State University**, Summer 2026. ECON 4400 Elementary Econometrics; lectures, assignments, exams, applied data sessions, regression/inference/model specification.
+
+## Professional Experience
+
+- **Investment Banking Analyst, CICC**, Beijing, Dec 2018 – May 2019. Industry/transaction research, comparable-company valuations, pitch books and acquisition-strategy materials.
+- **Audit Associate, Nexia TS (CPA)**, Shanghai, Sep 2021 – May 2022. Substantive testing, analytical procedures, data requests, audit documentation and client communication.
+
+## Target Roles
+
+Primary: quantitative research/trading/systematic investing; financial quantitative research in risk/treasury/credit; applied/research scientist and data science roles using economics, causal inference, experimentation, pricing, demand, or marketplace methods.
+
+Also actively search economist/economic research, antitrust/competition/economic consulting, pricing/revenue/consumer science, banking/credit analytics, strategy/business economics, policy/program evaluation/regulatory economics, and international/development-finance roles.
+
+For the current cycle, prioritize Summer 2027 / Ph.D. internships and adjacent roles compatible with May 2028 graduation.
+
+## Grounding Rule
+
+Never fabricate publications, awards, work authorization, visa status, tools, production experience, trading results, employers, dates, or metrics. If a posting asks for a requirement not supported above, report it as a gap or adjacency.

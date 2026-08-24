@@ -161,9 +161,10 @@ class MissingUpstreamRefTests(TriageRepoFixture):
 
 
 class WorkflowGuardTests(unittest.TestCase):
-    """The workflow must no-op on the upstream template, so a template clone
-    never opens an issue by surprise. GitHub Actions can't run offline, so we
-    pin the guard by asserting the job's `if` condition excludes upstream."""
+    """The workflow must no-op on the upstream template, keep reporting useful
+    when fork Issues are disabled, and use only the built-in repository token.
+    GitHub Actions can't run offline, so these tests pin the safety invariants.
+    """
 
     def test_workflow_is_guarded_against_upstream(self):
         text = WORKFLOW.read_text(encoding="utf-8")
@@ -186,6 +187,16 @@ class WorkflowGuardTests(unittest.TestCase):
                 sha = ref.split("@", 1)[1].split()[0]
                 self.assertRegex(sha, r"^[0-9a-f]{40}$",
                                  f"action not SHA-pinned: {ref}")
+
+    def test_report_is_always_written_to_job_summary(self):
+        text = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn('cat report.md >> "$GITHUB_STEP_SUMMARY"', text)
+
+    def test_disabled_issues_are_a_warning_not_a_failure(self):
+        text = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn("has_issues=$(gh api", text)
+        self.assertIn("Issues are disabled", text)
+        self.assertIn("exit 0", text)
 
 
 if __name__ == "__main__":

@@ -1,12 +1,15 @@
-请先读取本文件夹中的 AGENTS.md、CHATGPT_CONTEXT.md、CANDIDATE_PROFILE.md、MASTER_CV.md 和 SEARCH_PREFERENCES.json。
+请先读取本文件夹中的 AGENTS.md、CHATGPT_CONTEXT.md、CANDIDATE_PROFILE.md、MASTER_CV.md 和 SEARCH_PREFERENCES.json。如果 JOB_SEARCH_REQUEST.md 已经填写，也读取它。
 
-把这些文件作为我的求职事实来源和搜索规则。使用 ChatGPT Desktop / Codex 的直接模式：不要使用 OpenAI API，不要运行 Python，也不要要求 API Key。
+把这些文件作为我的候选人事实来源和默认求职规则。使用 ChatGPT Desktop / Codex 的直接模式：不要使用 OpenAI API，不要运行 Python，也不要要求 API Key。
 
-先确认你理解：
-1. 我的候选人背景和 May 2028 graduation timeline；
-2. Summer 2027 / 2027 的目标岗位范围；
-3. 官方 employer/ATS 优先、必须验证当前可申请、去重的搜索规则；
-4. 不捏造任何经历、技能、publication、trading result 或 work authorization；
-5. 最终申请提交必须由我自己控制。
+请确认你理解：
+1. CANDIDATE_PROFILE.md 和 MASTER_CV.md 是我的事实来源；
+2. SEARCH_PREFERENCES.json 只是默认偏好和职业发现 seeds，不是硬限制；
+3. 我当前消息或 JOB_SEARCH_REQUEST.md 中的本次需求优先；
+4. 不要默认只搜索 internship 或 Summer 2027；employment type 可以是任何工作形式；
+5. 对开放式需求，默认先推荐 Core / Adjacent / Exploratory 工作类别和 typical titles，等我确认后再搜索具体 vacancy；如果我说“按你的推荐继续”，则自动继续；如果我说“直接搜索”，则跳过类别规划；
+6. 搜索职位时官方 employer/ATS 优先，必须验证当前可申请并去重；
+7. 不捏造任何经历、技能、publication、trading result、work authorization 或 sponsorship；
+8. 最终申请提交必须由我自己控制。
 
-不要修改任何源文件。确认后等待我的求职任务。
+不要修改候选人源文件。确认后等待我描述本次求职需求。

@@ -1,12 +1,15 @@
-Read AGENTS.md, CHATGPT_CONTEXT.md, CANDIDATE_PROFILE.md, MASTER_CV.md, and SEARCH_PREFERENCES.json in this folder.
+Read AGENTS.md, CHATGPT_CONTEXT.md, CANDIDATE_PROFILE.md, MASTER_CV.md, and SEARCH_PREFERENCES.json in this folder. If JOB_SEARCH_REQUEST.md has been filled in, read it too.
 
-Use them as the factual source of truth and job-search rules for my work. Use direct ChatGPT Desktop / Codex mode: do not use the OpenAI API, do not run Python, and do not require an API key.
+Use these as the factual candidate sources and default job-search rules. Use direct ChatGPT Desktop / Codex mode: do not use the OpenAI API, do not run Python, and do not require an API key.
 
-First confirm that you understand:
-1. my candidate background and May 2028 graduation timeline;
-2. my Summer 2027 / 2027 target role families;
-3. the official-employer/ATS-first, current-applyability, and deduplication rules;
-4. that you must not invent experience, skills, publications, trading results, or work authorization;
-5. that final application submission remains under my control.
+Confirm that you understand:
+1. CANDIDATE_PROFILE.md and MASTER_CV.md are the factual sources of truth;
+2. SEARCH_PREFERENCES.json contains defaults and role-discovery seeds, not hard restrictions;
+3. my current message and JOB_SEARCH_REQUEST.md take priority for this search;
+4. do not assume internships or Summer 2027 unless I request them; employment type may be any relevant form of work;
+5. for open-ended requests, first recommend Core / Adjacent / Exploratory job families with typical titles and wait for my selection; if I say "use your recommendation", continue automatically; if I say "search now", skip category planning;
+6. when searching actual jobs, prioritize official employer/ATS sources, verify current applyability, and deduplicate requisitions;
+7. do not invent experience, skills, publications, trading results, work authorization, or sponsorship status;
+8. final application submission remains under my control.
 
-Do not modify any source files. After confirming, wait for my job-search task.
+Do not modify candidate source files. After confirming, wait for me to describe my current job-search needs.

@@ -1,0 +1,12 @@
+Read AGENTS.md, CHATGPT_CONTEXT.md, CANDIDATE_PROFILE.md, MASTER_CV.md, and SEARCH_PREFERENCES.json in this folder.
+
+Use them as the factual source of truth and job-search rules for my work. Use direct ChatGPT Desktop / Codex mode: do not use the OpenAI API, do not run Python, and do not require an API key.
+
+First confirm that you understand:
+1. my candidate background and May 2028 graduation timeline;
+2. my Summer 2027 / 2027 target role families;
+3. the official-employer/ATS-first, current-applyability, and deduplication rules;
+4. that you must not invent experience, skills, publications, trading results, or work authorization;
+5. that final application submission remains under my control.
+
+Do not modify any source files. After confirming, wait for my job-search task.

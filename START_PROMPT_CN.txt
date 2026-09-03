@@ -1,0 +1,12 @@
+请先读取本文件夹中的 AGENTS.md、CHATGPT_CONTEXT.md、CANDIDATE_PROFILE.md、MASTER_CV.md 和 SEARCH_PREFERENCES.json。
+
+把这些文件作为我的求职事实来源和搜索规则。使用 ChatGPT Desktop / Codex 的直接模式：不要使用 OpenAI API，不要运行 Python，也不要要求 API Key。
+
+先确认你理解：
+1. 我的候选人背景和 May 2028 graduation timeline；
+2. Summer 2027 / 2027 的目标岗位范围；
+3. 官方 employer/ATS 优先、必须验证当前可申请、去重的搜索规则；
+4. 不捏造任何经历、技能、publication、trading result 或 work authorization；
+5. 最终申请提交必须由我自己控制。
+
+不要修改任何源文件。确认后等待我的求职任务。

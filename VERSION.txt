@@ -1,0 +1,8 @@
+ChatGPT Desktop Job Search Starter Kit v1.0.0
+Built: 2026-09-02
+Source repository: ZhiWang-Andy/ai-job-search
+Source branch: feature/chatgpt-personal-job-agent
+Source commit: bd5e7eff1c2c18a5f0075763cae24be870659602
+Mode: direct ChatGPT Desktop / Codex
+OpenAI API key required: NO
+Python required: NO

@@ -1,9 +1,0 @@
-# Upstream commits that this personalized fork has reviewed and already
-# ported/adapted manually. One SHA prefix per line. Keep this separate from
-# upstream-wontport.txt: these changes are present in fork-specific form and
-# should not be re-suggested by the weekly upstream watcher.
-
-7d00ec792  # salary: dotted A.M.B.A. suffix matching + tests
-ff3e2d00b  # CI: Debian bookworm TeX Live leg, adapted to aggregate required check
-eee739ed7  # cache: trust-boundary/follow-up tests ported
-becdc5dfd  # cache: reusable company research, adapted for ChatGPT/Codex direct mode

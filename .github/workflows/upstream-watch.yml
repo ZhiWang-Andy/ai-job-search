@@ -26,8 +26,9 @@
 name: Upstream watch
 
 on:
-  schedule:
-    - cron: "0 8 * * 1" # 08:00 UTC every Monday
+  # Automatic runs paused at the owner's request. Uncomment to resume.
+  # schedule:
+  #   - cron: "0 8 * * 1" # 08:00 UTC every Monday
   workflow_dispatch:
 
 permissions:
